@@ -37,7 +37,7 @@ public class HydrateDatabase implements CommandLineRunner {
         int availableSlots = MAX_USERS - (int) existingUsers;
 
         if (availableSlots <= 0) {
-            System.out.println("Max number of users reached. Cannot add more user to database.");
+            System.out.println("Max number of users reached. Cannot add more users to database.");
             return;
         }
 
