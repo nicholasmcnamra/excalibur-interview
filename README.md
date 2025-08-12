@@ -25,7 +25,10 @@ Before running the application locally, make sure you have the following install
 ### 3. Configure Spring Boot Application
 - Update your credentials in the application.yml
 
-Note: The database schema will be created when the app starts up and dropped when it stops. The database must exist before tunning.
+Note: The database schema will be created when the app starts up and dropped when it stops. The database must exist before tunning. The database will also be hydrated with 1000 user records with user<number> as the username and password<number> as the password. For instance:
+```user2```
+```password2```
+This process may take a few minutes on startup.
 
 ### 4. Run the Spring Boot App
 - From the root backend folder, build and run the application:
@@ -39,3 +42,13 @@ The backend should now be running on ```http://localhost:8080```.
 ```npm start```
 
 This will start the development server at ```http://localhost:3000```.
+
+### 6. Optional - Build the app in Docker
+- Follow steps 1-3, then add a .env file to the root directory with your postgres credentials:
+```DB_USER=your-postgres-user```
+```DB_PASSWORD=your-postgres-password```
+
+- Start Docker (or Rancher)
+- Run:
+```docker compose up --build```
+- The app should be running now on localhost:80

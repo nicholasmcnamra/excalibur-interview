@@ -4,6 +4,8 @@ import com.excalibur_interview.Entities.ClassDetails;
 import com.excalibur_interview.Entities.User;
 import com.excalibur_interview.Repositories.ClassRepository;
 import com.excalibur_interview.Repositories.UserRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +18,12 @@ import java.util.Random;
 public class HydrateDatabase implements CommandLineRunner {
     private final UserRepository userRepository;
     private final ClassRepository classRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
+
     private static final int MAX_USERS = 1000;
     private static final int MAX_CLASSES_PER_USERS = 10;
+    private static final int BATCH_SIZE = 50;
 
     public HydrateDatabase (UserRepository userRepository, ClassRepository classRepository) {
         this.userRepository = userRepository;
@@ -36,7 +42,7 @@ public class HydrateDatabase implements CommandLineRunner {
         }
 
         Random random = new Random();
-        List<User> usersToAdd = new ArrayList<>();
+//        List<User> usersToAdd = new ArrayList<>();
 
         for (int i = 0; i < availableSlots; i++) {
             User user = new User();
@@ -55,10 +61,18 @@ public class HydrateDatabase implements CommandLineRunner {
                 classDetails.setUser(user);
                 user.getClasses().add(classDetails);
             }
-            usersToAdd.add(user);
+            entityManager.persist(user);
+
+            if (i > 0 && i % BATCH_SIZE == 0) {
+                entityManager.flush();
+                entityManager.clear();;
+            }
         }
-        userRepository.saveAll(usersToAdd);
-        System.out.println("Added " + usersToAdd.size() + " students to database.");
+//        userRepository.saveAll(usersToAdd);
+
+        entityManager.flush();
+        entityManager.clear();
+        System.out.println("Added " + availableSlots + " students to database.");
     }
 
 
