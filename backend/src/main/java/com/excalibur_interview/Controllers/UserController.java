@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private final UserServiceImpl userService;
 
-    @CrossOrigin("http://localhost:3000")
+    @CrossOrigin(origins= {"http://localhost:3000", "http://localhost/"})
     @PostMapping("/login")
     public ResponseEntity<UserDTO> getClassDetails(@RequestBody LoginRequestDTO loginRequestDTO) {
         return new ResponseEntity<>(userService.getUserWithClasses(loginRequestDTO.getUsername(), loginRequestDTO.getPassword()), HttpStatus.OK);

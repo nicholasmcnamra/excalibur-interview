@@ -8,6 +8,7 @@ export interface ClassList {
 
 export const ClassList:React.FC<{ classList:ClassList }> = ( { classList } ) => {
 
+    console.log(classList);
     if (!classList) {
         return (
             <Box>

@@ -1,4 +1,4 @@
-import { Box, Button, Grid, IconButton, TextField } from "@mui/material"
+import { Alert, Box, Button, Grid, IconButton, Snackbar, TextField } from "@mui/material"
 import { useEffect, useRef, useState } from "react";
 import { ClassList } from "./ClassList";
 
@@ -6,6 +6,7 @@ export const Login:React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginError, setLoginError] = useState<string | null>(null);
+    const [showSnackBarError, setShowSnackBarError] = useState<boolean>(false);
     const [classData, setClassData] = useState<ClassList | null>(null);
 
 
@@ -23,11 +24,29 @@ export const Login:React.FC = () => {
                     password: password
                 })
             })
-            setClassData(await response.json());
-            console.log(classData);
+
+            if (!response.ok) {
+                setLoginError("Login failed, please try again.")
+                setShowSnackBarError(true);
+                setClassData(null);
+            }
+
+            const data = await response.json();
+
+            if (!data?.classes || data.classes.length === 0) {
+                setLoginError("No classes found for this user.");
+                setShowSnackBarError(true);
+                setClassData(null);
+                return;
+            }
+
+            setClassData(data);
+            setLoginError(null);
+
         } catch (error) {
             console.log("Error fetching response", error);
             setLoginError("Login failed, please try again.");
+            setShowSnackBarError(true);
             setClassData(null);
         }
     }
@@ -110,6 +129,20 @@ export const Login:React.FC = () => {
             </Box>
             )
         }
+        <Snackbar
+            open={showSnackBarError}
+            autoHideDuration={4000}
+            onClose={() => setShowSnackBarError(false)}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
+            <Alert
+                onClose={() => setShowSnackBarError(false)}
+                severity='error'
+                sx={{ width: '100%' }}
+            >
+                {loginError}
+            </Alert>
+        </Snackbar>
             
         </Grid>
     )
