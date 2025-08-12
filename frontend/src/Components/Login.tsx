@@ -23,8 +23,6 @@ export const Login:React.FC = () => {
                     password: password
                 })
             })
-                console.log(username);
-    console.log(password);
             setClassData(await response.json());
             console.log(classData);
         } catch (error) {
