@@ -51,4 +51,4 @@ This will start the development server at ```http://localhost:3000```.
 - Start Docker (or Rancher)
 - Run:
 ```docker compose up --build```
-- The app should be running now on localhost:80
+- The app should be running now on ```http://localhost:80```
