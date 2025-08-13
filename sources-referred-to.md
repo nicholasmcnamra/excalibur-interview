@@ -5,6 +5,8 @@
 - https://www.youtube.com/watch?v=8kZN5vPlKj8
 - https://www.baeldung.com/java-random-list-element
 - https://stackoverflow.com/questions/43407411/generationtarget-encountered-exception-accepting-command-error-executing-ddl-v
+- https://www.baeldung.com/spring-jdbc-batch-inserts
+- https://studyeasy.org/course-articles/spring-boot-articles/s03l04-adding-seed-data-in-the-database/#implementing-seed-data-in-spring-boot
 
 ### React / TS
 - https://mui.com/material-ui/all-components/
