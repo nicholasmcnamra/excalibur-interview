@@ -1,5 +1,3 @@
-# React + MUI Frontend and Spring Boot Backend with PostreSQL Database
-
 ## Prerequisites
 
 Before running the application locally, make sure you have the following installed on your machine:
