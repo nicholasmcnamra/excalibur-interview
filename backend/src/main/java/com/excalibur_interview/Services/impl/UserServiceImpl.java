@@ -31,7 +31,12 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Database cannot exceed 1000 users.");
         }
         User savedUser = userRepository.save(user);
-        return new UserDTO(savedUser.getId(), savedUser.getUsername(), savedUser.getClasses().stream().map(c -> new ClassDTO(c.getId(), c.getName(), c.getScore())).toList());
+        return new UserDTO(
+                savedUser.getId(),
+                savedUser.getUsername(),
+                savedUser.getClasses().stream()
+                .map(c -> new ClassDTO(c.getId(), c.getName(), c.getScore())).toList()
+        );
     }
 //
 //    @Override
