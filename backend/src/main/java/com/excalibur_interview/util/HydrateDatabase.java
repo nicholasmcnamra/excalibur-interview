@@ -7,6 +7,8 @@ import com.excalibur_interview.Repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 @Component
+@Profile("local")
 public class HydrateDatabase implements CommandLineRunner {
     private final UserRepository userRepository;
     private final ClassRepository classRepository;
