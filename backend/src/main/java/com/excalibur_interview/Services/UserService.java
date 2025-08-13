@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
 //    User getById(Long id);
 //    List<User> getAll();
-    User add(User user);
+    UserDTO add(User user);
 //    void deleteById(Long id);
 
     UserDTO getUserWithClasses(String username, String password);

@@ -26,8 +26,12 @@ public class UserServiceImpl implements UserService {
 //    }
 //
     @Override
-    public User add(User user) {
-        return userRepository.save(user);
+    public UserDTO add(User user) {
+        if (userRepository.count() >= 1000) {
+            throw new RuntimeException("Database cannot exceed 1000 users.");
+        }
+        User savedUser = userRepository.save(user);
+        return new UserDTO(savedUser.getId(), savedUser.getUsername(), savedUser.getClasses().stream().map(c -> new ClassDTO(c.getId(), c.getName(), c.getScore())).toList());
     }
 //
 //    @Override

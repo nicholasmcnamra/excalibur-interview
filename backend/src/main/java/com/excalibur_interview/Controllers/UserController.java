@@ -27,7 +27,7 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserWithClasses(loginRequestDTO.getUsername(), loginRequestDTO.getPassword()), HttpStatus.OK);
     }
     @PostMapping("/create-user")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.add(new User(user.getUsername(), user.getPassword())), HttpStatus.OK);
     }
 }
