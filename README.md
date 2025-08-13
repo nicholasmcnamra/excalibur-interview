@@ -23,7 +23,7 @@ Before running the application locally, make sure you have the following install
 ### 3. Configure Spring Boot Application
 - Update your credentials in the application.yml
 
-Note: The database schema will be created when the app starts up and dropped when it stops. The database must exist before tunning. The database will also be hydrated with 1000 user records with user+index as the username and password+index as the password. For instance:
+Note: The database schema will be created when the app starts up and dropped when it stops. The database must exist before running. The database will also be hydrated with 1000 user records with user+index as the username and password+index as the password. For instance:
 ```user2```
 ```password2```
 This process may take a few minutes on startup.
