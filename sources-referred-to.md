@@ -6,7 +6,7 @@
 - https://www.baeldung.com/java-random-list-element
 - https://stackoverflow.com/questions/43407411/generationtarget-encountered-exception-accepting-command-error-executing-ddl-v
 - https://www.baeldung.com/spring-jdbc-batch-inserts
-- https://studyeasy.org/course-articles/spring-boot-articles/s03l04-adding-seed-data-in-the-database/#implementing-seed-data-in-spring-boot
+- https://medium.com/@AlexanderObregon/running-sql-scripts-automatically-at-spring-boot-startup-62ae2dd03087
 
 ### React / TS
 - https://mui.com/material-ui/all-components/
