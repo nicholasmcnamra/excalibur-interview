@@ -1,6 +1,6 @@
 ## Prerequisites
 
-Before running the application locally, make sure you have the following installed on your machine:
+Before running the application locally, make sure you have the following installed on your machine. If you decide to build the app in Docker, make sure postgres is installed or you are able to connect to a running instance of postgres.
 
 - [Node.js] https://nodejs.org/en/
 - [npm] https://www.npmjs.com/ (Should come with Node.js)
@@ -20,15 +20,26 @@ Before running the application locally, make sure you have the following install
 - Create the database for the app
 ```CREATE DATABASE excalibur_interview;```
 
-### 3. Configure Spring Boot Application
-- Update your credentials in the application.yml
-
 Note: The database schema will be created when the app starts up and dropped when it stops. The database must exist before running. The database will also be hydrated with 1000 user records with user+index as the username and password+index as the password. For instance:
 ```user2```
 ```password2```
-This process may take a few minutes on startup.
+
+### 3. Build the app in Docker
+- Follow steps 1-2, then add a .env file to the root directory with your postgres credentials:
+```DB_USER=your-postgres-user```
+```DB_PASSWORD=your-postgres-password```
+(There is a .env.example file in the root directory and .env is recorded in the .gitignore.)
+
+- Start Docker (or Rancher)
+- Run:
+```docker compose up --build```
+- The app should be running now on ```http://localhost:80```
+
+
+## If not using Docker:
 
 ### 4. Run the Spring Boot App
+- Either add your postgres credentials to the application.yml or make sure your .env file is in the backend directory.
 - From the root backend folder, build and run the application:
 ```mvn clean install```
 ```mvn spring-boot:run```
@@ -40,13 +51,3 @@ The backend should now be running on ```http://localhost:8080```.
 ```npm start```
 
 This will start the development server at ```http://localhost:3000```.
-
-### 6. Optional - Build the app in Docker
-- Follow steps 1-3, then add a .env file to the root directory with your postgres credentials:
-```DB_USER=your-postgres-user```
-```DB_PASSWORD=your-postgres-password```
-
-- Start Docker (or Rancher)
-- Run:
-```docker compose up --build```
-- The app should be running now on ```http://localhost:80```
